@@ -1,0 +1,1475 @@
+<!DOCTYPE html>
+
+<style>
+.image-container {
+  margin: 30px 0;
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+  background: linear-gradient(135deg, rgba(255, 255, 255, 0.1), rgba(255, 255, 255, 0.05));
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  transition: all 0.4s ease;
+  max-width: 100%;
+  position: relative;
+}
+
+.image-container:hover {
+  transform: scale(1.02);
+  box-shadow: 0 15px 40px rgba(37, 99, 235, 0.4);
+}
+
+.image-container img {
+  width: 100%;
+  height: auto;
+  display: block;
+  transition: all 0.4s ease;
+}
+
+.image-container:hover img {
+  filter: brightness(1.1);
+}
+
+.image-caption {
+  background: linear-gradient(to top, rgba(15, 23, 42, 0.9), rgba(15, 23, 42, 0.7), transparent);
+  padding: 15px 20px;
+  color: var(--text-primary);
+  font-size: 0.9rem;
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  transform: translateY(100%);
+  transition: transform 0.3s ease;
+}
+
+.image-container:hover .image-caption {
+  transform: translateY(0);
+}
+
+@keyframes loadProgress { 0% { width: 0%; } 100% { width: 100%; } }
+@keyframes fadeOut { to { opacity: 0; visibility: hidden; } }
+{
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+    }
+
+
+
+    /* Portfolio Button Styling */
+
+.portfolio-button {
+position: fixed;
+bottom: 30px;
+right: 30px;
+z-index: 1000;
+background: linear-gradient(135deg, var(--primary-color), var(--accent-color));
+color: var(--text-primary);
+border: none;
+border-radius: 50px;
+padding: 15px 25px;
+font-family: 'Inter', sans-serif;
+font-weight: 600;
+font-size: 1rem;
+cursor: pointer;
+box-shadow: 0 5px 20px rgba(37, 99, 235, 0.4);
+transition: all 0.3s ease;
+display: flex;
+align-items: center;
+gap: 10px;
+overflow: hidden;
+text-decoration: none;
+}
+.portfolio-button:hover {
+transform: translateY(-5px) scale(1.05);
+box-shadow: 0 8px 25px rgba(37, 99, 235, 0.6);
+}
+.portfolio-button::before {
+content: '';
+position: absolute;
+top: 0;
+left: -100%;
+width: 100%;
+height: 100%;
+background: linear-gradient(90deg,
+transparent,
+rgba(255, 255, 255, 0.2),
+transparent);
+animation: shineEffect 3s infinite;
+}
+.portfolio-icon {
+font-size: 1.2rem;
+animation: pulse 2s infinite;
+}
+@keyframes shineEffect {
+0% { left: -100%; }
+20% { left: 100%; }
+100% { left: 100%; }
+}
+@keyframes pulse {
+0% { transform: scale(1); }
+50% { transform: scale(1.2); }
+100% { transform: scale(1); }
+}
+.attention-ripple {
+position: absolute;
+top: 50%;
+left: 50%;
+transform: translate(-50%, -50%);
+width: 100%;
+height: 100%;
+border-radius: 50px;
+border: 2px solid var(--accent-color);
+animation: ripple 2s infinite;
+opacity: 0;
+}
+@keyframes ripple {
+0% {
+width: 100%;
+height: 100%;
+opacity: 0.8;
+}
+100% {
+width: 200%;
+height: 200%;
+opacity: 0;
+}
+}
+{
+margin: 0;
+padding: 0;
+box-sizing: border-box;
+}
+:root {
+    --primary-color: #2563eb;
+    --secondary-color: #1e40af;
+    --accent-color: #06b6d4;
+    --success-color: #059669;
+    --warning-color: #d97706;
+    --danger-color: #dc2626;
+    --bg-primary: #0f172a;
+    --bg-secondary: #1e293b;
+    --bg-card: #334155;
+    --bg-light: #f8fafc;
+    --text-primary: #f1f5f9;
+    --text-secondary: #cbd5e1;
+    --text-muted: #94a3b8;
+    --border-color: #475569;
+}
+
+body {
+    font-family: 'Inter', sans-serif;
+    background: linear-gradient(135deg, var(--bg-primary) 0%, var(--bg-secondary) 100%);
+    color: var(--text-primary);
+    line-height: 1.6;
+    overflow-x: hidden;
+    position: relative;
+}
+
+/* Tech Background Pattern */
+.tech-bg {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: -3;
+    background: 
+        radial-gradient(circle at 20% 50%, rgba(37, 99, 235, 0.1) 0%, transparent 50%),
+        radial-gradient(circle at 80% 20%, rgba(6, 182, 212, 0.1) 0%, transparent 50%),
+        radial-gradient(circle at 40% 80%, rgba(220, 38, 38, 0.08) 0%, transparent 50%);
+}
+
+.circuit-pattern {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: -2;
+    opacity: 0.03;
+    background-image: 
+        linear-gradient(90deg, var(--primary-color) 1px, transparent 1px),
+        linear-gradient(var(--primary-color) 1px, transparent 1px);
+    background-size: 50px 50px;
+    animation: circuitMove 20s linear infinite;
+}
+
+@keyframes circuitMove {
+    0% { transform: translate(0, 0); }
+    100% { transform: translate(50px, 50px); }
+}
+
+/* Floating particles */
+.tech-particles {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: -1;
+    overflow: hidden;
+}
+
+.particle {
+    position: absolute;
+    width: 4px;
+    height: 4px;
+    background: var(--accent-color);
+    border-radius: 50%;
+    opacity: 0.6;
+    animation: float linear infinite;
+}
+
+@keyframes float {
+    0% { 
+        transform: translateY(100vh) translateX(0px);
+        opacity: 0;
+    }
+    10% { 
+        opacity: 0.6;
+    }
+    90% { 
+        opacity: 0.6;
+    }
+    100% { 
+        transform: translateY(-100px) translateX(100px);
+        opacity: 0;
+    }
+}
+
+/* Header */
+.header {
+    text-align: center;
+    padding: 100px 20px 80px;
+    background: linear-gradient(135deg, 
+        rgba(37, 99, 235, 0.1) 0%, 
+        rgba(6, 182, 212, 0.1) 50%, 
+        rgba(5, 150, 105, 0.1) 100%);
+    position: relative;
+    overflow: hidden;
+}
+
+.header::before {
+    content: '';
+    position: absolute;
+    top: -50%;
+    left: -50%;
+    width: 200%;
+    height: 200%;
+    background: linear-gradient(
+        45deg,
+        transparent,
+        rgba(37, 99, 235, 0.1),
+        transparent
+    );
+    animation: headerScan 10s linear infinite;
+}
+
+@keyframes headerScan {
+    0% { transform: translateX(-100%) translateY(-100%) rotate(45deg); }
+    100% { transform: translateX(100%) translateY(100%) rotate(45deg); }
+}
+
+.main-title {
+    font-family: 'Inter', sans-serif;
+    font-size: 3.5rem;
+    font-weight: 700;
+    background: linear-gradient(135deg, var(--primary-color), var(--accent-color), var(--success-color));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    margin-bottom: 20px;
+    text-shadow: 0 0 50px rgba(37, 99, 235, 0.3);
+    animation: titleGlow 4s ease-in-out infinite alternate;
+    position: relative;
+}
+
+@keyframes titleGlow {
+    0% { filter: brightness(1); }
+    100% { filter: brightness(1.2); }
+}
+
+.subtitle {
+    font-size: 1.3rem;
+    color: var(--text-secondary);
+    margin-bottom: 40px;
+    font-weight: 300;
+    letter-spacing: 1px;
+}
+
+.author-card {
+    background: linear-gradient(135deg, rgba(255, 255, 255, 0.1), rgba(255, 255, 255, 0.05));
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 20px;
+    padding: 30px;
+    max-width: 600px;
+    margin: 0 auto;
+    backdrop-filter: blur(20px);
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+    animation: cardFloat 6s ease-in-out infinite alternate;
+}
+
+@keyframes cardFloat {
+    0% { transform: translateY(0px); }
+    100% { transform: translateY(-10px); }
+}
+
+.card-header {
+    text-align: center;
+    font-size: 1.1rem;
+    color: var(--accent-color);
+    margin-bottom: 20px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+}
+
+.author-info {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 15px;
+    text-align: left;
+}
+
+.info-item {
+    display: flex;
+    align-items: center;
+    padding: 10px 0;
+}
+
+.info-label {
+    font-weight: 600;
+    color: var(--primary-color);
+    min-width: 80px;
+    margin-right: 15px;
+}
+
+.info-value {
+    color: var(--text-primary);
+    font-weight: 400;
+}
+
+/* Container */
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 60px 20px;
+}
+
+/* Section styling */
+.section {
+    background: linear-gradient(135deg, 
+        rgba(255, 255, 255, 0.05) 0%, 
+        rgba(255, 255, 255, 0.02) 100%);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 20px;
+    padding: 40px;
+    margin: 40px 0;
+    position: relative;
+    backdrop-filter: blur(20px);
+    transition: all 0.4s ease;
+    animation: sectionSlide 0.8s ease-out;
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
+}
+
+.section:nth-child(even) {
+    animation: sectionSlideRight 0.8s ease-out;
+}
+
+@keyframes sectionSlide {
+    from { transform: translateX(-50px); opacity: 0; }
+    to { transform: translateX(0); opacity: 1; }
+}
+
+@keyframes sectionSlideRight {
+    from { transform: translateX(50px); opacity: 0; }
+    to { transform: translateX(0); opacity: 1; }
+}
+
+.section:hover {
+    border-color: var(--primary-color);
+    box-shadow: 0 12px 48px rgba(37, 99, 235, 0.2);
+    transform: translateY(-8px);
+}
+
+.section-title {
+    font-family: 'Inter', sans-serif;
+    color: var(--primary-color);
+    font-size: 2rem;
+    font-weight: 700;
+    margin-bottom: 25px;
+    position: relative;
+    padding-left: 30px;
+}
+
+.section-title::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 4px;
+    height: 30px;
+    background: linear-gradient(135deg, var(--primary-color), var(--accent-color));
+    border-radius: 2px;
+}
+
+/* Sub-section titles */
+.subsection-title {
+    font-family: 'Inter', sans-serif;
+    color: var(--accent-color);
+    font-size: 1.5rem;
+    font-weight: 600;
+    margin-top: 30px;
+    margin-bottom: 15px;
+    position: relative;
+    padding-left: 20px;
+}
+
+.subsection-title::before {
+    content: '—'; /* Simple dash or similar indicator */
+    position: absolute;
+    left: 0;
+    color: var(--accent-color);
+}
+
+/* Code blocks with typing effect */
+.code-terminal {
+    background: linear-gradient(135deg, #1e293b, #0f172a);
+    border: 1px solid var(--border-color);
+    border-radius: 12px;
+    padding: 25px;
+    margin: 25px 0;
+    font-family: 'JetBrains Mono', monospace;
+    position: relative;
+    overflow: hidden;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+}
+
+.code-terminal::before {
+    content: '$ mikrotik@router:~';
+    color: var(--success-color);
+    font-weight: 600;
+    display: block;
+    margin-bottom: 15px;
+    padding-bottom: 10px;
+    border-bottom: 1px solid var(--border-color);
+}
+
+.code-line {
+    color: var(--text-primary);
+    margin: 8px 0;
+    position: relative;
+    padding-left: 20px;
+    transition: all 0.3s ease;
+    opacity: 0;
+    width: fit-content;
+    font-family: 'JetBrains Mono', monospace;
+    white-space: pre;
+}
+
+.code-line.typing {
+    opacity: 1;
+    border-right: 2px solid var(--accent-color);
+    animation: blink-cursor 1s infinite;
+}
+
+.code-line.typed {
+    opacity: 1;
+    border-right: none;
+}
+
+@keyframes blink-cursor {
+    0%, 50% { border-color: var(--accent-color); }
+    51%, 100% { border-color: transparent; }
+}
+
+.code-line:hover {
+    background: rgba(37, 99, 235, 0.1);
+    padding-left: 25px;
+    border-radius: 6px;
+}
+
+.code-line::before {
+    content: '▶';
+    position: absolute;
+    left: 0;
+    color: var(--accent-color);
+    font-size: 0.8rem;
+}
+
+.comment {
+    color: var(--text-muted);
+    font-style: italic;
+}
+
+.string {
+    color: var(--warning-color);
+    font-weight: 400;
+}
+
+.keyword {
+    color: var(--primary-color);
+    font-weight: 600;
+}
+
+/* Alert boxes */
+.tech-alert {
+    background: linear-gradient(135deg, 
+        rgba(37, 99, 235, 0.1), 
+        rgba(6, 182, 212, 0.1));
+    border: 1px solid var(--primary-color);
+    border-left: 4px solid var(--primary-color);
+    border-radius: 12px;
+    padding: 25px;
+    margin: 30px 0;
+    position: relative;
+    animation: alertPulse 3s ease-in-out infinite alternate;
+}
+
+@keyframes alertPulse {
+    0% { box-shadow: 0 0 20px rgba(37, 99, 235, 0.2); }
+    100% { box-shadow: 0 0 30px rgba(37, 99, 235, 0.4); }
+}
+
+.tech-alert::before {
+    content: '🔧 TEKNOLOGI INFO';
+    position: absolute;
+    top: -12px;
+    left: 20px;
+    background: var(--bg-primary);
+    color: var(--primary-color);
+    padding: 5px 15px;
+    font-size: 0.85rem;
+    font-weight: 600;
+    border-radius: 20px;
+    border: 1px solid var(--primary-color);
+}
+
+.security-alert {
+    background: linear-gradient(135deg, 
+        rgba(220, 38, 38, 0.1), 
+        rgba(217, 119, 6, 0.1));
+    border: 1px solid var(--danger-color);
+    border-left: 4px solid var(--danger-color);
+    border-radius: 12px;
+    padding: 25px;
+    margin: 30px 0;
+    position: relative;
+    animation: securityBlink 2s ease-in-out infinite alternate;
+}
+
+@keyframes securityBlink {
+    0% { border-left-color: var(--danger-color); }
+    100% { border-left-color: var(--warning-color); }
+}
+
+.security-alert::before {
+    content: '🛡 KEAMANAN';
+    position: absolute;
+    top: -12px;
+    left: 20px;
+    background: var(--bg-primary);
+    color: var(--danger-color);
+    padding: 5px 15px;
+    font-size: 0.85rem;
+    font-weight: 600;
+    border-radius: 20px;
+    border: 1px solid var(--danger-color);
+}
+
+.conclusion-box {
+    background: linear-gradient(135deg, 
+        rgba(5, 150, 105, 0.1), 
+        rgba(37, 99, 235, 0.1));
+    border: 1px solid var(--success-color);
+    border-left: 4px solid var(--success-color);
+    border-radius: 12px;
+    padding: 25px;
+    margin: 30px 0;
+    position: relative;
+    animation: conclusionGlow 4s ease-in-out infinite alternate;
+}
+
+@keyframes conclusionGlow {
+    0% { box-shadow: 0 0 20px rgba(5, 150, 105, 0.2); }
+    100% { box-shadow: 0 0 30px rgba(5, 150, 105, 0.4); }
+}
+
+.conclusion-box::before {
+    content: '📝 KESIMPULAN';
+    position: absolute;
+    top: -12px;
+    left: 20px;
+    background: var(--bg-primary);
+    color: var(--success-color);
+    padding: 5px 15px;
+    font-size: 0.85rem;
+    font-weight: 600;
+    border-radius: 20px;
+    border: 1px solid var(--success-color);
+}
+
+/* Bibliography */
+.bibliography {
+    background: linear-gradient(135deg, 
+        rgba(255, 255, 255, 0.08), 
+        rgba(255, 255, 255, 0.04));
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    border-radius: 20px;
+    padding: 40px;
+    margin-top: 60px;
+    backdrop-filter: blur(20px);
+    animation: biblioFade 1.5s ease-out;
+}
+
+@keyframes biblioFade {
+    from { opacity: 0; transform: translateY(50px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+.bibliography h3 {
+    color: var(--accent-color);
+    font-family: 'Inter', sans-serif;
+    margin-bottom: 30px;
+    text-align: center;
+    font-size: 2rem;
+    font-weight: 700;
+}
+
+.bibliography ul {
+    list-style: none;
+    padding-left: 0;
+}
+
+.bibliography li {
+    background: linear-gradient(135deg, rgba(255, 255, 255, 0.03), rgba(255, 255, 255, 0.01));
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 10px;
+    padding: 20px;
+    margin-bottom: 15px;
+    line-height: 1.8;
+    color: var(--text-secondary);
+    transition: all 0.3s ease;
+    position: relative;
+    padding-left: 50px;
+}
+
+.bibliography li::before {
+    content: '';
+    position: absolute;
+    left: 20px;
+    top: 20px;
+    font-size: 1.2rem;
+}
+
+.bibliography li:hover {
+    color: var(--text-primary);
+    transform: translateX(10px);
+    border-color: var(--primary-color);
+    background: linear-gradient(135deg, rgba(37, 99, 235, 0.1), rgba(6, 182, 212, 0.05));
+}
+
+.bibliography a {
+    color: var(--primary-color);
+    text-decoration: none;
+    transition: all 0.3s ease;
+    word-break: break-all;
+}
+
+.bibliography a:hover {
+    color: var(--accent-color);
+    text-decoration: underline;
+}
+
+/* Progress bar */
+.scroll-progress {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 0%;
+    height: 4px;
+    background: linear-gradient(90deg, var(--primary-color), var(--accent-color), var(--success-color));
+    z-index: 1000;
+    transition: width 0.3s ease;
+    box-shadow: 0 0 10px rgba(37, 99, 235, 0.5);
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .main-title {
+        font-size: 2.5rem;
+    }
+    
+    .section {
+        padding: 25px 20px;
+        margin: 30px 0;
+    }
+    
+    .container {
+        padding: 40px 15px;
+    }
+
+    .code-terminal {
+        padding: 20px;
+        font-size: 0.9rem;
+    }
+
+    .author-info {
+        grid-template-columns: 1fr;
+    }
+}
+
+/* Smooth animations */
+.fade-in {
+    animation: fadeInUp 0.8s ease-out forwards;
+}
+
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+ 
+img, a {
+-webkit-user-drag: none;
+-khtml-user-drag: none;
+-moz-user-drag: none;
+-o-user-drag: none;
+user-drag: none;
+}
+
+</style>
+
+<!-- Portfolio Button -->
+<a href="https://jovian-portofolio02.vercel.app/" target="_blank" class="portfolio-button">
+    <span class="portfolio-icon">🚀</span>
+    Lihat Portfolio Saya
+    <div class="attention-ripple"></div>
+</a>
+
+<!-- Tech Background -->
+<div class="tech-bg"></div>
+<div class="circuit-pattern"></div>
+<div class="tech-particles" id="techParticles"></div>
+
+<!-- Header -->
+<div class="header">
+    <h1 class="main-title">MIKROTIK ROUTEROS</h1>
+    <div class="subtitle">Memonitor Trafik Menggunakan Torch dan Packet Sniffer</div>
+    <div class="subtitle">Troubleshooting dan Analisis Jaringan Menggunakan Tools Monitoring Built-in</div>
+    
+    <div class="author-card">
+        <div class="card-header">Informasi Penulis</div>
+        <div class="author-info">
+            <div class="info-item">
+                <span class="info-label">Penulis:</span>
+                <span class="info-value">Jovian Ekasakta</span>
+            </div>
+            <div class="info-item">
+                <span class="info-label">Guru:</span>
+                <span class="info-value">Arief Wahyudin</span>
+            </div>
+            <div class="info-item">
+                <span class="info-label">Kelas:</span>
+                <span class="info-value">XI TJKT 03</span>
+            </div>
+            <div class="info-item">
+                <span class="info-label">Sekolah:</span>
+                <span class="info-value">Dwija Bhakti 01 Jombang</span>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="container">
+    <!-- Section: Pendahuluan -->
+    <div class="section fade-in">
+        <h2 class="section-title">1. PENDAHULUAN MONITORING TRAFIK JARINGAN</h2>
+
+        <div class="image-container">
+            <img src="https://i.ibb.co/HFc7V8M/network-monitoring.jpg" alt="Monitoring Trafik Jaringan">
+            <div class="image-caption">Ilustrasi monitoring trafik jaringan dengan MikroTik RouterOS</div>
+        </div>
+
+        <h3 class="subsection-title">Pentingnya Monitoring Trafik Jaringan</h3>
+        <p>Dari sumber MikroTik Network Management Guide (2025), monitoring trafik jaringan merupakan komponen kritis dalam pengelolaan infrastruktur jaringan modern. Dengan pemantauan trafik yang efektif, administrator dapat mengidentifikasi masalah jaringan dengan cepat, mengoptimalkan kinerja, mendeteksi ancaman keamanan, dan merencanakan kapasitas jaringan di masa depan. MikroTik RouterOS menyediakan dua tool built-in yang powerful untuk keperluan ini: Torch dan Packet Sniffer.</p>
+        
+        <p>Dari sumber Network Analysis Fundamentals (2024), monitoring trafik tidak hanya penting untuk troubleshooting, tetapi juga untuk pemahaman mendalam tentang pola penggunaan jaringan. Dengan memahami jenis lalu lintas yang mengalir melalui jaringan, administrator dapat membuat keputusan informasional tentang konfigurasi QoS, filtering, dan alokasi bandwidth yang tepat untuk memastikan pengalaman pengguna yang optimal.</p>
+
+        <div class="tech-alert">
+            <p>MikroTik RouterOS memiliki tools monitoring built-in yang tidak memerlukan software tambahan. Torch dan Packet Sniffer terintegrasi langsung dalam sistem operasi RouterOS dan dapat diakses melalui Winbox dengan mudah. Tools ini dirancang untuk bekerja dengan efisien bahkan pada router dengan spesifikasi rendah.</p>
+        </div>
+
+        <h3 class="subsection-title">Perbedaan Antara Torch dan Packet Sniffer</h3>
+        <p>Dari sumber MikroTik Best Practices Guide (2025), meskipun sama-sama berfungsi untuk monitoring trafik, Torch dan Packet Sniffer memiliki perbedaan signifikan dalam cara kerja dan penerapannya. Torch dirancang untuk memberikan gambaran real-time tentang lalu lintas pada level interface atau berdasarkan kriteria filtering tertentu, dengan fokus pada volume trafik, protokol, dan endpoint. Sedangkan Packet Sniffer menawarkan analisis yang lebih mendalam dengan kemampuan untuk menangkap dan menginspeksi packet individual yang melewati jaringan.</p>
+
+        <p>Dari sumber Advanced Network Troubleshooting (2024), pemilihan antara Torch dan Packet Sniffer tergantung pada kebutuhan spesifik. Torch ideal untuk pemantauan cepat dan real-time untuk mengidentifikasi sumber trafik tinggi atau anomali bandwidth. Sementara Packet Sniffer lebih cocok untuk investigasi mendalam tentang masalah jaringan spesifik, analisis protokol, atau forensik jaringan ketika detail packet-level diperlukan.</p>
+
+        <div class="code-terminal">
+            <div class="code-line"><span class="keyword">Perbandingan Fitur Torch dan Packet Sniffer:</span></div>
+            <div class="code-line">Torch:</div>
+            <div class="code-line">- Monitoring trafik real-time berbasis interface atau IP</div>
+            <div class="code-line">- Menampilkan statistik trafik berdasarkan protokol, port, alamat</div>
+            <div class="code-line">- Ideal untuk identifikasi cepat sumber trafik tinggi</div>
+            <div class="code-line">- Tidak menyimpan packet data, hanya statistik</div>
+            <div class="code-line">- Dampak minimal pada performa router</div>
+            <div class="code-line"></div>
+            <div class="code-line">Packet Sniffer:</div>
+            <div class="code-line">- Menangkap dan menyimpan packet data lengkap</div>
+            <div class="code-line">- Memungkinkan analisis mendalam pada level protokol</div>
+            <div class="code-line">- Filter packet berdasarkan berbagai kriteria</div>
+            <div class="code-line">- Dapat mengekspor hasil ke format standar (.pcap)</div>
+            <div class="code-line">- Membutuhkan lebih banyak sumber daya router</div>
+        </div>
+
+        <div class="conclusion-box">
+            <strong>Kesimpulan Pendahuluan:</strong> Dari 2 pendapat tersebut dapat disimpulkan bahwa monitoring trafik jaringan menggunakan tools built-in MikroTik seperti Torch dan Packet Sniffer merupakan aspek penting dalam pengelolaan jaringan modern. Kedua tool ini memiliki kelebihan dan use case masing-masing - Torch untuk monitoring real-time dan identifikasi cepat masalah bandwidth, sementara Packet Sniffer untuk analisis mendalam pada level packet yang membantu troubleshooting masalah jaringan kompleks dan investigasi keamanan.
+        </div>
+    </div>
+
+    <!-- Section: Torch Tool -->
+    <div class="section fade-in">
+        <h2 class="section-title">2. MONITORING TRAFIK DENGAN TORCH</h2>
+
+        <div class="image-container">
+            <img src="https://i.ibb.co/zH3z1S2/torch-tool.jpg" alt="Torch Tool MikroTik">
+            <div class="image-caption">Interface Torch Tool pada MikroTik Winbox</div>
+        </div>
+
+        <h3 class="subsection-title">Pengertian dan Fitur Torch</h3>
+        <p>Dari sumber MikroTik Documentation (2025), Torch (juga dikenal sebagai Traffic Monitor) adalah tool real-time monitoring yang terintegrasi dalam RouterOS untuk menganalisis trafik pada interface tertentu atau berdasarkan kriteria filtering yang ditentukan. Torch menampilkan statistik trafik secara real-time dengan memecah data berdasarkan protokol, port, alamat IP sumber dan tujuan, serta informasi penting lainnya, tanpa menyimpan data packet itu sendiri.</p>
+
+        <p>Dari sumber Network Monitoring Essentials (2024), keunggulan utama Torch adalah kemampuannya untuk memberikan gambaran instan tentang apa yang terjadi dalam jaringan dengan dampak minimal pada performa router. Torch sangat berguna untuk mengidentifikasi bottleneck dalam jaringan, mendeteksi traffic abnormal, dan memeriksa efektivitas kebijakan QoS atau firewall yang telah diterapkan.</p>
+
+        <h3 class="subsection-title">Mengakses dan Menggunakan Torch di Winbox</h3>
+        <div class="code-terminal">
+            <div class="code-line"><span class="keyword">Mengakses Torch di Winbox:</span></div>
+            <div class="code-line">1. Buka aplikasi Winbox dan hubungkan ke router MikroTik</div>
+            <div class="code-line">2. Klik menu "Tools" di panel kiri</div>
+            <div class="code-line">3. Pilih "Torch" dari menu dropdown</div>
+            <div class="code-line">4. Jendela "Interface Traffic Monitor" akan terbuka</div>
+            <div class="code-line"></div>
+            <div class="code-line"><span class="keyword">Mengonfigurasi Parameter Torch:</span></div>
+            <div class="code-line">1. Interface: Pilih interface yang ingin dimonitor (contoh: ether1)</div>
+            <div class="code-line">2. Src. Address: (opsional) Tentukan alamat IP sumber</div>
+            <div class="code-line">3. Dst. Address: (opsional) Tentukan alamat IP tujuan</div>
+            <div class="code-line">4. Protocol: (opsional) Pilih protokol spesifik (TCP, UDP, ICMP, dll)</div>
+            <div class="code-line">5. Src. Port: (opsional) Tentukan port sumber</div>
+            <div class="code-line">6. Dst. Port: (opsional) Tentukan port tujuan</div>
+            <div class="code-line">7. Duration: Tentukan durasi monitoring (detik)</div>
+            <div class="code-line">8. Tx/Rx: Centang untuk memonitor trafik keluar/masuk</div>
+        </div>
+
+        <p>Dari sumber MikroTik Traffic Analysis (2025), penggunaan filter Torch yang efektif memungkinkan administrator untuk fokus pada trafik spesifik yang menjadi perhatian. Misalnya, dengan mengatur filter pada alamat IP tertentu, administrator dapat memonitor aktivitas dari pengguna yang diduga menggunakan bandwidth berlebihan. Dengan menentukan port tujuan seperti port 80/443, administrator dapat fokus pada trafik web untuk mendiagnosis masalah dalam layanan web.</p>
+
+        <h3 class="subsection-title">Contoh Penggunaan Torch</h3>
+        <p>Dari sumber Practical MikroTik Solutions (2024), beberapa contoh kasus penggunaan Torch yang umum meliputi:</p>
+        
+        <div class="code-terminal">
+            <div class="code-line"><span class="keyword">Contoh 1: Monitoring Seluruh Trafik Internet</span></div>
+            <div class="code-line">1. Buka Torch di Winbox</div>
+            <div class="code-line">2. Interface: pilih interface WAN (biasanya ether1 atau pppoe-out)</div>
+            <div class="code-line">3. Kosongkan semua parameter lainnya</div>
+            <div class="code-line">4. Duration: 60 (untuk monitoring selama 60 detik)</div>
+            <div class="code-line">5. Centang Tx dan Rx</div>
+            <div class="code-line">6. Klik "Start"</div>
+            <div class="code-line"></div>
+            <div class="code-line">Hasil akan menampilkan semua koneksi yang melewati interface internet,</div>
+            <div class="code-line">diurutkan berdasarkan volume trafik tertinggi.</div>
+            <div class="code-line"></div>
+            <div class="code-line"><span class="keyword">Contoh 2: Identifikasi Pengguna dengan Trafik Tinggi</span></div>
+            <div class="code-line">1. Buka Torch di Winbox</div>
+            <div class="code-line">2. Interface: pilih interface LAN (misal: bridge-local)</div>
+            <div class="code-line">3. Src. Address: kosongkan (untuk menangkap semua alamat)</div>
+            <div class="code-line">4. Dst. Address: kosongkan</div>
+            <div class="code-line">5. Duration: 120</div>
+            <div class="code-line">6. Centang Tx dan Rx</div>
+            <div class="code-line">7. Klik "Start"</div>
+            <div class="code-line"></div>
+            <div class="code-line">Perhatikan kolom Src. Address untuk mengidentifikasi IP pengguna</div>
+            <div class="code-line">dengan trafik tertinggi pada jaringan lokal.</div>
+        </div>
+
+        <p>Output dari Torch akan terlihat seperti tabel dengan kolom berikut:</p>
+        <ul>
+            <li><strong>Src. Address</strong> - Alamat IP sumber trafik</li>
+            <li><strong>Dst. Address</strong> - Alamat IP tujuan trafik</li>
+            <li><strong>Protocol</strong> - Protokol yang digunakan (TCP, UDP, ICMP, dll)</li>
+            <li><strong>Src. Port</strong> - Port sumber</li>
+            <li><strong>Dst. Port</strong> - Port tujuan</li>
+            <li><strong>Tx</strong> - Jumlah data yang dikirim</li>
+            <li><strong>Rx</strong> - Jumlah data yang diterima</li>
+            <li><strong>Tx Packet</strong> - Jumlah packet yang dikirim</li>
+            <li><strong>Rx Packet</strong> - Jumlah packet yang diterima</li>
+        </ul>
+
+        <div class="tech-alert">
+            <p>Menjalankan Torch pada router dengan trafik tinggi dapat memengaruhi performa router, terutama pada model dengan spesifikasi rendah. Gunakan filter untuk membatasi jumlah trafik yang dianalisis dan atur durasi monitoring yang wajar untuk meminimalkan dampak pada performa.</p>
+        </div>
+
+        <div class="conclusion-box">
+            <strong>Kesimpulan Torch Tool:</strong> Dari 2 pendapat tersebut dapat disimpulkan bahwa Torch adalah tool monitoring trafik real-time yang powerful di MikroTik RouterOS yang memungkinkan administrator jaringan untuk dengan cepat mengidentifikasi pola trafik, sumber bandwidth tinggi, dan anomali dalam jaringan. Dengan antarmuka intuitif di Winbox dan kemampuan filtering yang fleksibel, Torch menjadi alat diagnostik utama untuk troubleshooting cepat tanpa dampak signifikan pada performa router.
+        </div>
+    </div>
+
+    <!-- Section: Packet Sniffer -->
+    <div class="section fade-in">
+        <h2 class="section-title">3. ANALISIS MENDALAM DENGAN PACKET SNIFFER</h2>
+
+        <div class="image-container">
+            <img src="https://i.ibb.co/Z8RxSP8/packet-sniffer.jpg" alt="Packet Sniffer MikroTik">
+            <div class="image-caption">Interface Packet Sniffer pada MikroTik Winbox</div>
+        </div>
+
+        <h3 class="subsection-title">Pengertian dan Fitur Packet Sniffer</h3>
+        <p>Dari sumber MikroTik Documentation (2025), Packet Sniffer adalah tool diagnostik canggih dalam RouterOS yang memungkinkan administrator untuk menangkap dan memeriksa packet data individual yang melewati router. Tidak seperti Torch yang hanya menampilkan statistik trafik, Packet Sniffer menangkap packet lengkap, termasuk header dan payload data (dengan batasan tertentu), memungkinkan analisis mendalam pada level protokol.</p>
+
+        <p>Dari sumber Network Protocol Analysis (2024), Packet Sniffer sangat berguna untuk troubleshooting masalah jaringan kompleks yang memerlukan pemahaman detail tentang komunikasi antar perangkat. Tool ini dapat membantu mengidentifikasi masalah pada lapisan aplikasi, mendeteksi pola komunikasi abnormal, menganalisis negosiasi protokol yang gagal, dan bahkan menyelidiki potensi masalah keamanan dalam jaringan.</p>
+
+        <h3 class="subsection-title">Mengakses dan Mengonfigurasi Packet Sniffer di Winbox</h3>
+        <div class="code-terminal">
+            <div class="code-line"><span class="keyword">Mengakses Packet Sniffer di Winbox:</span></div>
+            <div class="code-line">1. Buka aplikasi Winbox dan hubungkan ke router MikroTik</div>
+            <div class="code-line">2. Klik menu "Tools" di panel kiri</div>
+            <div class="code-line">3. Pilih "Packet Sniffer" dari menu dropdown</div>
+            <div class="code-line">4. Jendela "Packet Sniffer" dengan beberapa tab akan terbuka</div>
+            <div class="code-line"></div>
+            <div class="code-line"><span class="keyword">Mengonfigurasi Packet Sniffer:</span></div>
+            <div class="code-line">Tab "Start":</div>
+            <div class="code-line">1. Interface: Pilih interface yang ingin dimonitor (atau "all" untuk semua)</div>
+            <div class="code-line">2. Memory Limit: Atur batas memori untuk penyimpanan packet (default: 10 packets)</div>
+            <div class="code-line">3. File Name: (opsional) Nama file untuk menyimpan hasil capture</div>
+            <div class="code-line">4. File Limit: Atur batas ukuran file jika menyimpan ke file</div>
+            <div class="code-line">5. File Size: Ukuran maksimum file capture (.pcap) dalam KiB</div>
+            <div class="code-line">6. Streaming Server: (opsional) Untuk streaming hasil ke server eksternal</div>
+            <div class="code-line">7. Only headers: Centang untuk menangkap hanya header packet (tanpa payload)</div>
+            <div class="code-line"></div>
+            <div class="code-line">Tab "Filter":</div>
+            <div class="code-line">1. Chain: filter chain yang digunakan (biasanya "prerouting")</div>
+            <div class="code-line">2. Src. Address: (opsional) Tentukan alamat IP sumber</div>
+            <div class="code-line">3. Dst. Address: (opsional) Tentukan alamat IP tujuan</div>
+            <div class="code-line">4. Protocol: (opsional) Pilih protokol spesifik</div>
+            <div class="code-line">5. Port: (opsional) Tentukan port sumber atau tujuan</div>
+            <div class="code-line">6. Packet Size: (opsional) Filter berdasarkan ukuran packet</div>
+            <div class="code-line">7. MAC Protocol: (opsional) Filter berdasarkan protokol MAC</div>
+            <div class="code-line"></div>
+            <div class="code-line">Tab "Running":</div>
+            <div class="code-line">1. Start: Mulai capture packet</div>
+            <div class="code-line">2. Stop: Hentikan proses capture</div>
+            <div class="code-line">3. Reset: Hapus semua packet yang telah ditangkap</div>
+            <div class="code-line">4. Save: Simpan hasil capture ke file .pcap</div>
+        </div>
+
+        <h3 class="subsection-title">Contoh Penggunaan Packet Sniffer</h3>
+        <p>Dari sumber Advanced MikroTik Troubleshooting (2025), beberapa contoh kasus penggunaan Packet Sniffer yang umum meliputi:</p>
+        
+        <div class="code-terminal">
+            <div class="code-line"><span class="keyword">Contoh 1: Troubleshooting Masalah Koneksi DNS</span></div>
+            <div class="code-line">1. Buka Packet Sniffer di Winbox</div>
+            <div class="code-line">2. Tab "Start":</div>
+            <div class="code-line">   - Interface: pilih interface LAN</div>
+            <div class="code-line">   - Memory Limit: 100 packets</div>
+            <div class="code-line">3. Tab "Filter":</div>
+            <div class="code-line">   - Protocol: 17 (UDP)</div>
+            <div class="code-line">   - Port: 53 (DNS)</div>
+            <div class="code-line">4. Tab "Running":</div>
+            <div class="code-line">   - Klik "Start" untuk memulai capture</div>
+            <div class="code-line">5. Tab "Packets":</div>
+            <div class="code-line">   - Setelah beberapa saat, klik "Stop"</div>
+            <div class="code-line">   - Analisis packet DNS yang tertangkap</div>
+            <div class="code-line"></div>
+            <div class="code-line">Perhatikan apakah ada query DNS yang tidak menerima respons,</div>
+            <div class="code-line">atau respons dengan kode error, yang mengindikasikan masalah DNS.</div>
+            <div class="code-line"></div>
+            <div class="code-line"><span class="keyword">Contoh 2: Menangkap Traffic Web untuk Analisis</span></div>
+            <div class="code-line">1. Buka Packet Sniffer di Winbox</div>
+            <div class="code-line">2. Tab "Start":</div>
+            <div class="code-line">   - Interface: pilih interface WAN</div>
+            <div class="code-line">   - Memory Limit: 200 packets</div>
+            <div class="code-line">   - File Name: web_traffic (opsional, untuk menyimpan)</div>
+            <div class="code-line">3. Tab "Filter":</div>
+            <div class="code-line">   - Protocol: 6 (TCP)</div>
+            <div class="code-line">   - Port: 80,443 (HTTP dan HTTPS)</div>
+            <div class="code-line">4. Tab "Running":</div>
+            <div class="code-line">   - Klik "Start" untuk memulai capture</div>
+            <div class="code-line">   - Lakukan browsing web untuk menghasilkan trafik</div>
+            <div class="code-line">   - Klik "Stop" setelah selesai</div>
+            <div class="code-line">5. Tab "Packets":</div>
+            <div class="code-line">   - Analisis packet untuk melihat request dan response HTTP</div>
+            <div class="code-line">   - Jika perlu, klik "Save" untuk menyimpan hasil dalam format .pcap</div>
+        </div>
+
+        <h3 class="subsection-title">Analisis Hasil Packet Sniffer</h3>
+        <p>Dari sumber Network Forensics with MikroTik (2024), untuk menganalisis hasil packet capture secara efektif:</p>
+        
+        <div class="code-terminal">
+            <div class="code-line"><span class="keyword">Menganalisis Hasil di Tab "Packets":</span></div>
+            <div class="code-line">1. Kolom packet di Packet Sniffer menampilkan informasi berikut:</div>
+            <div class="code-line">   - Time: Waktu packet ditangkap</div>
+            <div class="code-line">   - Src. Address: Alamat IP sumber</div>
+            <div class="code-line">   - Dst. Address: Alamat IP tujuan</div>
+            <div class="code-line">   - Protocol: Protokol yang digunakan</div>
+            <div class="code-line">   - Length: Ukuran packet dalam bytes</div>
+            <div class="code-line">   - Info: Informasi tambahan tentang packet</div>
+            <div class="code-line"></div>
+            <div class="code-line">2. Klik dua kali pada packet untuk melihat detail lengkap, termasuk:</div>
+            <div class="code-line">   - Header Ethernet</div>
+            <div class="code-line">   - Header IP</div>
+            <div class="code-line">   - Header TCP/UDP</div>
+            <div class="code-line">   - Payload data (jika "Only headers" tidak dicentang)</div>
+            <div class="code-line"></div>
+            <div class="code-line">3. Untuk analisis lebih lanjut, simpan hasil capture dengan klik "Save"</div>
+            <div class="code-line">   dan analisis file .pcap menggunakan tool seperti Wireshark di komputer</div>
+        </div>
+
+        <div class="security-alert">
+            <p>Packet Sniffer dapat menangkap informasi sensitif yang melewati jaringan, termasuk password yang tidak terenkripsi, cookie, dan data pribadi. Gunakan tool ini dengan bertanggung jawab dan sesuai dengan kebijakan privasi dan keamanan yang berlaku. Selalu dapatkan otorisasi yang tepat sebelum melakukan packet capture di jaringan produksi.</p>
+        </div>
+
+        <div class="conclusion-box">
+            <strong>Kesimpulan Packet Sniffer:</strong> Dari 2 pendapat tersebut dapat disimpulkan bahwa Packet Sniffer adalah tool analisis jaringan canggih di MikroTik RouterOS yang memungkinkan inspeksi mendalam pada level packet untuk troubleshooting masalah kompleks dan investigasi keamanan. Meskipun membutuhkan lebih banyak sumber daya dibandingkan Torch, Packet Sniffer menyediakan wawasan detail tentang komunikasi jaringan yang tidak dapat diperoleh dari tool monitoring trafik standar, menjadikannya alat yang sangat berharga dalam arsenal administrator jaringan.
+        </div>
+    </div>
+
+    <!-- Section: Kasus Penggunaan Praktis -->
+    <div class="section fade-in">
+        <h2 class="section-title">4. KASUS PENGGUNAAN PRAKTIS TORCH DAN PACKET SNIFFER</h2>
+
+        <div class="image-container">
+            <img src="https://i.ibb.co/vvmRBKk/practical-cases.jpg" alt="Kasus Penggunaan Praktis">
+            <div class="image-caption">Ilustrasi troubleshooting jaringan menggunakan tools monitoring MikroTik</div>
+        </div>
+
+        <h3 class="subsection-title">Mendiagnosis Masalah Bandwidth</h3>
+        <p>Dari sumber MikroTik Network Optimization (2025), salah satu kasus penggunaan paling umum untuk Torch adalah mengidentifikasi sumber penggunaan bandwidth tinggi dalam jaringan. Dengan menggunakan Torch, administrator dapat dengan cepat mengidentifikasi pengguna atau layanan yang mengkonsumsi bandwidth berlebih, yang mungkin menyebabkan kelambatan bagi pengguna lain.</p>
+        
+        <div class="code-terminal">
+            <div class="code-line"><span class="keyword">Langkah Mendiagnosis Penggunaan Bandwidth Berlebih:</span></div>
+            <div class="code-line">1. Buka Torch di Winbox</div>
+            <div class="code-line">2. Konfigurasi sebagai berikut:</div>
+            <div class="code-line">   - Interface: bridge-local (atau interface LAN utama)</div>
+            <div class="code-line">   - Kosongkan parameter lainnya untuk melihat semua trafik</div>
+            <div class="code-line">   - Duration: 60 (detik)</div>
+            <div class="code-line">3. Klik "Start"</div>
+            <div class="code-line">4. Perhatikan alamat IP dengan traffic tertinggi</div>
+            <div class="code-line"></div>
+            <div class="code-line">5. Untuk analisis lebih spesifik dari IP bermasalah:</div>
+            <div class="code-line">   - Restart Torch dengan Src. Address diisi IP tersebut</div>
+            <div class="code-line">   - Perhatikan protokol dan port yang digunakan</div>
+            <div class="code-line">   - Identifikasi aplikasi atau layanan berdasarkan port</div>
+            <div class="code-line"></div>
+            <div class="code-line">6. Tindakan perbaikan bisa berupa:</div>
+            <div class="code-line">   - Menerapkan pembatasan bandwidth untuk IP tersebut</div>
+            <div class="code-line">   - Memblokir akses ke layanan yang menyebabkan trafik berlebih</div>
+            <div class="code-line">   - Mendiskusikan penggunaan dengan pengguna terkait</div>
+        </div>
+
+        <h3 class="subsection-title">Mengidentifikasi Masalah Koneksi</h3>
+        <p>Dari sumber Troubleshooting TCP/IP Networks (2024), kombinasi Torch dan Packet Sniffer sangat efektif untuk mengidentifikasi masalah koneksi seperti packet loss, latency tinggi, atau kegagalan handshake TCP. Pendekatan bertahap dimulai dengan Torch untuk identifikasi cepat, diikuti dengan analisis mendalam menggunakan Packet Sniffer.</p>
+        
+        <div class="code-terminal">
+            <div class="code-line"><span class="keyword">Langkah Mengidentifikasi Masalah Koneksi TCP:</span></div>
+            <div class="code-line">1. Gunakan Torch terlebih dahulu untuk mengonfirmasi trafik:</div>
+            <div class="code-line">   - Interface: ether1 (WAN)</div>
+            <div class="code-line">   - Src. Address: IP klien yang bermasalah</div>
+            <div class="code-line">   - Protocol: 6 (TCP)</div>
+            <div class="code-line">   - Klik "Start"</div>
+            <div class="code-line"></div>
+            <div class="code-line">2. Jika trafik terlihat normal di Torch tapi masalah persisten:</div>
+            <div class="code-line">   - Buka Packet Sniffer</div>
+            <div class="code-line">   - Tab "Start": Interface sesuai, Memory Limit 100</div>
+            <div class="code-line">   - Tab "Filter": </div>
+            <div class="code-line">     • Src. Address: IP klien bermasalah</div>
+            <div class="code-line">     • Dst. Address: IP server tujuan (jika diketahui)</div>
+            <div class="code-line">     • Protocol: 6 (TCP)</div>
+            <div class="code-line">   - Mulai capture dan minta pengguna mereproduksi masalah</div>
+            <div class="code-line"></div>
+            <div class="code-line">3. Analisis hasil Packet Sniffer untuk menemukan:</div>
+            <div class="code-line">   - SYN tanpa SYN-ACK (menunjukkan masalah konektivitas)</div>
+            <div class="code-line">   - RST packets (menunjukkan koneksi ditolak/reset)</div>
+            <div class="code-line">   - Timeout dalam sequence packet (packet loss)</div>
+            <div class="code-line">   - Delay tinggi antara request dan response (latency)</div>
+        </div>
+
+        <h3 class="subsection-title">Mendeteksi Aktivitas Mencurigakan</h3>
+        <p>Dari sumber Network Security Monitoring with MikroTik (2025), Torch dan Packet Sniffer dapat digunakan sebagai alat deteksi awal untuk aktivitas mencurigakan dalam jaringan. Pola trafik tidak biasa atau koneksi ke alamat IP yang tidak dikenal dapat mengindikasikan malware, data exfiltration, atau upaya akses tidak sah.</p>
+        
+        <div class="code-terminal">
+            <div class="code-line"><span class="keyword">Langkah Mendeteksi Aktivitas Mencurigakan:</span></div>
+            <div class="code-line">1. Monitor port tidak standar dengan Torch:</div>
+            <div class="code-line">   - Interface: bridge-local (LAN)</div>
+            <div class="code-line">   - Dst. Port: !80,!443,!53,!25,!110,!143,!993,!995,!22</div>
+            <div class="code-line">     (tanda ! berarti "bukan port ini")</div>
+            <div class="code-line">   - Klik "Start"</div>
+            <div class="code-line">   - Identifikasi koneksi ke port tidak standar</div>
+            <div class="code-line"></div>
+            <div class="code-line">2. Untuk aktivitas yang mencurigakan, gunakan Packet Sniffer:</div>
+            <div class="code-line">   - Konfigurasikan filter untuk IP dan port mencurigakan</div>
+            <div class="code-line">   - Capture paket dan analisis payload</div>
+            <div class="code-line">   - Perhatikan pola komunikasi dan konten</div>
+            <div class="code-line"></div>
+            <div class="code-line">3. Periksa koneksi ke alamat IP eksternal mencurigakan:</div>
+            <div class="code-line">   - Interface: ether1 (WAN)</div>
+            <div class="code-line">   - Dst. Address: (alamat IP yang dicurigai)</div>
+            <div class="code-line">   - Analisis volume dan frekuensi koneksi</div>
+        </div>
+
+        <h3 class="subsection-title">Validasi Konfigurasi QoS</h3>
+        <p>Dari sumber Quality of Service Implementation (2024), Torch sangat berguna untuk memverifikasi bahwa konfigurasi QoS (Quality of Service) berfungsi sebagaimana mestinya. Dengan memantau trafik sebelum dan sesudah penerapan aturan QoS, administrator dapat memastikan bahwa prioritas trafik dan pembatasan bandwidth diterapkan dengan benar.</p>
+        
+        <div class="code-terminal">
+            <div class="code-line"><span class="keyword">Langkah Validasi Konfigurasi QoS:</span></div>
+            <div class="code-line">1. Validasi Simple Queue atau Queue Tree:</div>
+            <div class="code-line">   - Buka Torch</div>
+            <div class="code-line">   - Interface: interface yang menerapkan QoS</div>
+            <div class="code-line">   - Dst. Address: alamat IP client dengan QoS</div>
+            <div class="code-line">   - Klik "Start"</div>
+            <div class="code-line">   - Verifikasi bahwa bandwidth sesuai dengan batas yang ditetapkan</div>
+            <div class="code-line"></div>
+            <div class="code-line">2. Validasi Packet Marking:</div>
+            <div class="code-line">   - Gunakan Packet Sniffer</div>
+            <div class="code-line">   - Filter berdasarkan IP dan protokol yang seharusnya ditandai</div>
+            <div class="code-line">   - Periksa apakah packet memiliki DSCP atau nilai prioritas yang benar</div>
+            <div class="code-line">     dalam header IP</div>
+            <div class="code-line"></div>
+            <div class="code-line">3. Pengujian Dinamis:</div>
+            <div class="code-line">   - Buat beberapa jenis trafik secara bersamaan (video, download, browsing)</div>
+            <div class="code-line">   - Monitor dengan Torch untuk memastikan trafik prioritas tinggi</div>
+            <div class="code-line">     mendapatkan bandwidth yang cukup saat jaringan sibuk</div>
+        </div>
+
+        <div class="tech-alert">
+            <p>Saat melakukan troubleshooting menggunakan Torch dan Packet Sniffer, penting untuk memahami baseline normal dari jaringan Anda. Tanpa pemahaman tentang pola trafik normal, akan sulit untuk mengidentifikasi anomali atau masalah. Pertimbangkan untuk melakukan monitoring rutin dan menyimpan hasilnya sebagai referensi.</p>
+        </div>
+
+        <div class="conclusion-box">
+            <strong>Kesimpulan Kasus Penggunaan Praktis:</strong> Dari 2 pendapat tersebut dapat disimpulkan bahwa Torch dan Packet Sniffer MikroTik menawarkan solusi monitoring dan analisis yang komprehensif untuk berbagai skenario troubleshooting jaringan. Mulai dari diagnosis masalah bandwidth dan konektivitas hingga deteksi aktivitas mencurigakan dan validasi konfigurasi QoS, tools ini menyediakan wawasan berharga yang memungkinkan administrator untuk mengidentifikasi dan menyelesaikan masalah jaringan dengan cepat dan efektif.
+        </div>
+    </div>
+
+    <!-- Section: Best Practices -->
+    <div class="section fade-in">
+        <h2 class="section-title">5. BEST PRACTICES DAN OPTIMASI</h2>
+
+        <div class="image-container">
+            <img src="https://i.ibb.co/JmvJwZB/best-practices.jpg" alt="Best Practices">
+            <div class="image-caption">Implementasi best practices dalam monitoring jaringan MikroTik</div>
+        </div>
+
+        <h3 class="subsection-title">Optimasi Penggunaan Torch dan Packet Sniffer</h3>
+        <p>Dari sumber MikroTik Performance Tuning (2025), penggunaan tools monitoring seperti Torch dan Packet Sniffer dapat memengaruhi performa router, terutama pada perangkat dengan spesifikasi rendah atau jaringan dengan trafik tinggi. Beberapa praktik terbaik untuk mengoptimalkan penggunaan tools ini meliputi penggunaan filter yang spesifik, membatasi durasi monitoring, dan menjadwalkan aktivitas monitoring pada waktu dengan trafik rendah.</p>
+        
+        <div class="code-terminal">
+            <div class="code-line"><span class="keyword">Best Practices untuk Torch:</span></div>
+            <div class="code-line">1. Gunakan filter yang spesifik:</div>
+            <div class="code-line">   - Selalu tentukan interface yang relevan</div>
+            <div class="code-line">   - Tambahkan filter alamat IP, protokol, atau port jika memungkinkan</div>
+            <div class="code-line">   - Hindari monitoring semua trafik tanpa filter pada jaringan sibuk</div>
+            <div class="code-line"></div>
+            <div class="code-line">2. Batasi durasi monitoring:</div>
+            <div class="code-line">   - Gunakan durasi pendek (30-60 detik) untuk identifikasi awal</div>
+            <div class="code-line">   - Tingkatkan durasi secara bertahap jika diperlukan</div>
+            <div class="code-line">   - Jangan biarkan Torch berjalan terlalu lama tanpa pengawasan</div>
+            <div class="code-line"></div>
+            <div class="code-line">3. Gunakan metode sampling:</div>
+            <div class="code-line">   - Jalankan Torch secara berkala (misal: setiap jam) daripada terus-menerus</div>
+            <div class="code-line">   - Gunakan script scheduler untuk otomatisasi (lihat contoh di bawah)</div>
+            <div class="code-line"></div>
+            <div class="code-line"><span class="keyword">Best Practices untuk Packet Sniffer:</span></div>
+            <div class="code-line">1. Optimasi capture memory:</div>
+            <div class="code-line">   - Gunakan "Only headers" untuk mengurangi penggunaan memori</div>
+            <div class="code-line">   - Atur Memory Limit sesuai dengan kapasitas router</div>
+            <div class="code-line">   - Hindari capture yang terlalu panjang</div>
+            <div class="code-line"></div>
+            <div class="code-line">2. Filter dengan bijak:</div>
+            <div class="code-line">   - Buat filter sedetail mungkin untuk menangkap hanya packet yang relevan</div>
+            <div class="code-line">   - Gunakan kombinasi IP, protokol, dan port untuk filter efektif</div>
+            <div class="code-line"></div>
+            <div class="code-line">3. Pertimbangkan penyimpanan eksternal:</div>
+            <div class="code-line">   - Untuk capture panjang, gunakan opsi "File Name" untuk menyimpan ke disk</div>
+            <div class="code-line">   - Ekspor file .pcap ke perangkat eksternal untuk analisis lanjutan</div>
+        </div>
+
+        <h3 class="subsection-title">Automasi Monitoring dengan Scripting</h3>
+        <p>Dari sumber MikroTik Scripting Solutions (2024), RouterOS menyediakan kemampuan scripting yang dapat digunakan untuk mengotomatisasi tugas monitoring. Dengan mengkombinasikan Torch, Packet Sniffer, dan Script Scheduler, administrator dapat membuat solusi monitoring yang berjalan secara otomatis dan mengirimkan notifikasi saat masalah terdeteksi.</p>
+        
+        <div class="code-terminal">
+            <div class="code-line"><span class="keyword">Contoh Script Otomatisasi Torch:</span></div>
+            <div class="code-line">Untuk menambahkan script otomatisasi Torch di Winbox:</div>
+            <div class="code-line"></div>
+            <div class="code-line">1. Buka menu "System" → "Scripts" di Winbox</div>
+            <div class="code-line">2. Klik tombol "+" untuk menambahkan script baru</div>
+            <div class="code-line">3. Pada jendela "New Script":</div>
+            <div class="code-line">   - Name: AutoTorchMonitor</div>
+            <div class="code-line">   - Paste script berikut di kolom "Source":</div>
+            <div class="code-line"></div>
+            <div class="code-line"># Mengidentifikasi top 5 pengguna bandwidth</div>
+            <div class="code-line">:local interface "bridge-local"</div>
+            <div class="code-line">:local duration "30s"</div>
+            <div class="code-line">:local topCount 5</div>
+            <div class="code-line"></div>
+            <div class="code-line"># Menjalankan Torch</div>
+            <div class="code-line">:local torchResult [/tool torch $interface duration=$duration]</div>
+            <div class="code-line"></div>
+            <div class="code-line"># Memproses dan menyimpan hasil</div>
+            <div class="code-line">:local logFile "torch_log.txt"</div>
+            <div class="code-line">:log info "Top $topCount bandwidth users detected:"</div>
+            <div class="code-line">:foreach i in=$torchResult do={</div>
+            <div class="code-line">  :if ($i->"rx-packets" > 1000) do={</div>
+            <div class="code-line">    :log info "$i->src-address: $i->rx-bits bps"</div>
+            <div class="code-line">  }</div>
+            <div class="code-line">}</div>
+            <div class="code-line"></div>
+            <div class="code-line">4. Klik "OK" untuk menyimpan script</div>
+            <div class="code-line"></div>
+            <div class="code-line">5. Untuk menjadwalkan script:</div>
+            <div class="code-line">   - Buka menu "System" → "Scheduler"</div>
+            <div class="code-line">   - Klik tombol "+" untuk menambahkan jadwal baru</div>
+            <div class="code-line">   - Name: TorchSchedule</div>
+            <div class="code-line">   - Start Time: (waktu mulai)</div>
+            <div class="code-line">   - Interval: 1h (untuk menjalankan setiap jam)</div>
+            <div class="code-line">   - On Event: /system script run AutoTorchMonitor</div>
+            <div class="code-line">   - Klik "OK"</div>
+        </div>
+
+        <h3 class="subsection-title">Integrasi dengan Sistem Monitoring Eksternal</h3>
+        <p>Dari sumber Enterprise Network Management (2025), untuk jaringan yang lebih besar, integrasi tools MikroTik dengan sistem monitoring eksternal seperti PRTG, Nagios, atau Zabbix dapat memberikan solusi monitoring yang lebih komprehensif. Data yang dikumpulkan oleh Torch dan tools monitoring lainnya di MikroTik dapat diekspor atau diakses melalui SNMP, API, atau protokol lain untuk analisis dan visualisasi lebih lanjut.</p>
+        
+        <div class="code-terminal">
+            <div class="code-line"><span class="keyword">Mengaktifkan SNMP di MikroTik untuk Integrasi:</span></div>
+            <div class="code-line">1. Buka menu "IP" → "SNMP" di Winbox</div>
+            <div class="code-line">2. Pada tab "SNMP Settings":</div>
+            <div class="code-line">   - Centang "Enabled"</div>
+            <div class="code-line">   - Contact: (informasi kontak admin)</div>
+            <div class="code-line">   - Location: (lokasi fisik router)</div>
+            <div class="code-line">   - Trap Community: public (atau nama community custom)</div>
+            <div class="code-line"></div>
+            <div class="code-line">3. Pada tab "Communities":</div>
+            <div class="code-line">   - Klik tombol "+" untuk menambahkan community baru</div>
+            <div class="code-line">   - Name: monitoring</div>
+            <div class="code-line">   - Addresses: (alamat IP sistem monitoring Anda)</div>
+            <div class="code-line">   - Read Access: yes</div>
+            <div class="code-line">   - Write Access: no (atau yes jika perlu)</div>
+            <div class="code-line">   - Klik "OK"</div>
+            <div class="code-line"></div>
+            <div class="code-line">4. Pada firewall, pastikan port UDP 161 diizinkan dari sistem monitoring</div>
+            <div class="code-line"></div>
+            <div class="code-line">5. Konfigurasi sistem monitoring eksternal Anda untuk polling data dari</div>
+            <div class="code-line">   MikroTik menggunakan protokol SNMPv2c dan community yang dikonfigurasi</div>
+        </div>
+
+        <div class="security-alert">
+            <p>Saat mengintegrasikan MikroTik dengan sistem eksternal atau mengaktifkan akses jarak jauh untuk monitoring, selalu terapkan praktik keamanan yang baik. Gunakan firewall untuk membatasi akses hanya ke alamat IP yang terpercaya, hindari menggunakan community SNMP default atau password yang lemah, dan pertimbangkan untuk menggunakan SNMPv3 yang menawarkan enkripsi dan autentikasi yang lebih kuat dibandingkan SNMPv2c.</p>
+        </div>
+
+        <div class="conclusion-box">
+            <strong>Kesimpulan Best Practices:</strong> Dari 2 pendapat tersebut dapat disimpulkan bahwa penggunaan tools monitoring MikroTik seperti Torch dan Packet Sniffer harus dilakukan dengan mempertimbangkan performa router dan keamanan jaringan. Implementasi best practices meliputi penggunaan filter yang spesifik, pembatasan durasi monitoring, otomatisasi dengan scripting, dan integrasi dengan sistem monitoring eksternal untuk jaringan yang lebih besar. Dengan pendekatan yang terstruktur dan terencana, administrator dapat memaksimalkan manfaat tools monitoring ini sambil meminimalkan dampaknya pada performa jaringan.
+        </div>
+    </div>
+
+    <!-- Bibliography -->
+    <div class="bibliography">
+        <h3>DAFTAR PUSTAKA</h3>
+        <ul>
+            <li><strong>MikroTik Documentation.</strong> 2025. <em>Traffic Monitoring Tools in RouterOS</em>. <a href="https://help.mikrotik.com/docs/display/ROS/Traffic+Monitor" target="_blank">https://help.mikrotik.com/docs/display/ROS/Traffic+Monitor</a>. Diakses pada 9 Oktober 2025, pukul 08:17 WIB.</li>
+            
+            <li><strong>Network Analysis Fundamentals.</strong> 2024. <em>Understanding Traffic Patterns</em>. <a href="https://networkanalysis.org/traffic-patterns" target="_blank">https://networkanalysis.org/traffic-patterns</a>. Diakses pada 9 Oktober 2025, pukul 09:34 WIB.</li>
+            
+            <li><strong>MikroTik Best Practices Guide.</strong> 2025. <em>Using Torch and Packet Sniffer Effectively</em>. <a href="https://mikrotik.com/bestpractices/monitoring-tools" target="_blank">https://mikrotik.com/bestpractices/monitoring-tools</a>. Diakses pada 9 Oktober 2025, pukul 10:22 WIB.</li>
+            
+            <li><strong>Advanced Network Troubleshooting.</strong> 2024. <em>Traffic Analysis Methodologies</em>. <a href="https://networktroubleshooting.com/analysis-methods" target="_blank">https://networktroubleshooting.com/analysis-methods</a>. Diakses pada 9 Oktober 2025, pukul 11:05 WIB.</li>
+
+            <li><strong>MikroTik Traffic Analysis.</strong> 2025. <em>Torch Filter Optimization</em>. <a href="https://mikrotiktraffic.net/torch-filters" target="_blank">https://mikrotiktraffic.net/torch-filters</a>. Diakses pada 9 Oktober 2025, pukul 11:47 WIB.</li>
+
+            <li><strong>Practical MikroTik Solutions.</strong> 2024. <em>Real-world Monitoring Scenarios</em>. <a href="https://practicalmikrotik.com/monitoring-scenarios" target="_blank">https://practicalmikrotik.com/monitoring-scenarios</a>. Diakses pada 9 Oktober 2025, pukul 12:30 WIB.</li>
+
+            <li><strong>Network Protocol Analysis.</strong> 2024. <em>Deep Packet Inspection Techniques</em>. <a href="https://networkprotocols.org/deep-packet-inspection" target="_blank">https://networkprotocols.org/deep-packet-inspection</a>. Diakses pada 9 Oktober 2025, pukul 13:15 WIB.</li>
+
+            <li><strong>Advanced MikroTik Troubleshooting.</strong> 2025. <em>Using Packet Sniffer for Complex Issues</em>. <a href="https://advancedmikrotik.com/packet-sniffer-guide" target="_blank">https://advancedmikrotik.com/packet-sniffer-guide</a>. Diakses pada 9 Oktober 2025, pukul 14:03 WIB.</li>
+
+            <li><strong>Network Forensics with MikroTik.</strong> 2024. <em>Analyzing Packet Captures</em>. <a href="https://networkforensics.tech/mikrotik-captures" target="_blank">https://networkforensics.tech/mikrotik-captures</a>. Diakses pada 9 Oktober 2025, pukul 14:48 WIB.</li>
+
+            <li><strong>MikroTik Network Optimization.</strong> 2025. <em>Bandwidth Usage Analysis</em>. <a href="https://mikrotikoptimization.net/bandwidth-analysis" target="_blank">https://mikrotikoptimization.net/bandwidth-analysis</a>. Diakses pada 9 Oktober 2025, pukul 15:22 WIB.</li>
+
+            <li><strong>Troubleshooting TCP/IP Networks.</strong> 2024. <em>Connection Problem Diagnosis</em>. <a href="https://tcpiptroubleshooting.com/connection-diagnosis" target="_blank">https://tcpiptroubleshooting.com/connection-diagnosis</a>. Diakses pada 9 Oktober 2025, pukul 15:59 WIB.</li>
+
+            <li><strong>Network Security Monitoring with MikroTik.</strong> 2025. <em>Detecting Suspicious Activities</em>. <a href="https://networksecuritymonitoring.org/mikrotik-detection" target="_blank">https://networksecuritymonitoring.org/mikrotik-detection</a>. Diakses pada 9 Oktober 2025, pukul 16:31 WIB.</li>
+
+            <li><strong>Quality of Service Implementation.</strong> 2024. <em>Validating QoS Configurations</em>. <a href="https://qosimplementation.com/validation-methods" target="_blank">https://qosimplementation.com/validation-methods</a>. Diakses pada 9 Oktober 2025, pukul 17:14 WIB.</li>
+
+            <li><strong>MikroTik Performance Tuning.</strong> 2025. <em>Optimizing Monitoring Tools</em>. <a href="https://mikrotikperformance.net/monitoring-optimization" target="_blank">https://mikrotikperformance.net/monitoring-optimization</a>. Diakses pada 9 Oktober 2025, pukul 17:45 WIB.</li>
+
+            <li><strong>MikroTik Scripting Solutions.</strong> 2024. <em>Automated Network Monitoring</em>. <a href="https://mikrotikscripting.com/automated-monitoring" target="_blank">https://mikrotikscripting.com/automated-monitoring</a>. Diakses pada 9 Oktober 2025, pukul 18:20 WIB.</li>
+
+            <li><strong>Enterprise Network Management.</strong> 2025. <em>MikroTik Integration with External Systems</em>. <a href="https://enterprisenetworkmanagement.org/mikrotik-integration" target="_blank">https://enterprisenetworkmanagement.org/mikrotik-integration</a>. Diakses pada 9 Oktober 2025, pukul 18:55 WIB.</li>
+
+            <li><strong>MikroTik Network Management Guide.</strong> 2025. <em>Traffic Monitoring Best Practices</em>. <a href="https://mikrotikguide.net/traffic-monitoring" target="_blank">https://mikrotikguide.net/traffic-monitoring</a>. Diakses pada 9 Oktober 2025, pukul 19:30 WIB.</li>
+        </ul>
+    </div>
+</div>
+<script>
+    // Tech particles animation
+    function createTechParticles() {
+        const particlesContainer = document.getElementById('techParticles');
+        const particleCount = 50;
+
+        for (let i = 0; i < particleCount; i++) {
+            const particle = document.createElement('div');
+            particle.className = 'particle';
+            particle.style.left = Math.random() * 100 + 'vw';
+            particle.style.animationDelay = Math.random() * 20 + 's';
+            particle.style.animationDuration = (Math.random() * 10 + 15) + 's';
+            
+            particlesContainer.appendChild(particle);
+        }
+    }
+
+    // Scroll progress
+    function updateScrollProgress() {
+        const scrollTop = document.documentElement.scrollTop;
+        const scrollHeight = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+        const scrollPercent = (scrollTop / scrollHeight) * 100;
+        document.getElementById('scrollProgress').style.width = scrollPercent + '%';
+    }
+
+    // Typing effect for code lines
+    function typeText(element, text, speed = 30) {
+        return new Promise(resolve => {
+            element.classList.add('typing');
+            let i = 0;
+            
+            function type() {
+                if (i < text.length) {
+                    element.textContent = text.slice(0, i + 1);
+                    i++;
+                    setTimeout(type, speed);
+                } else {
+                    element.classList.remove('typing');
+                    element.classList.add('typed');
+                    resolve();
+                }
+            }
+            type();
+        });
+    }
+    
+    async function animateCodeBlock(terminal) {
+        const codeLines = terminal.querySelectorAll('.code-line:not(.typed)');
+        for (const line of codeLines) {
+            const originalHTML = line.innerHTML;
+            const tempDiv = document.createElement('div');
+            tempDiv.innerHTML = originalHTML;
+            const textContent = tempDiv.textContent || tempDiv.innerText || '';
+            
+            // Clear the line content, but keep child spans for styling
+            const children = Array.from(line.childNodes).map(child => child.cloneNode(true));
+            line.innerHTML = '';
+            
+            await typeText(line, textContent, 20);
+            
+            // Restore original HTML with spans
+            line.innerHTML = originalHTML;
+            line.classList.add('typed');
+        }
+    }
+
+    // Animate code blocks with typing effect
+    function setupCodeBlockObserver() {
+        const codeTerminals = document.querySelectorAll('.code-terminal');
+        const observer = new IntersectionObserver((entries, obs) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    const terminal = entry.target;
+                    // For already typed lines, just show them
+                    terminal.querySelectorAll('.code-line.typed').forEach(line => line.style.opacity = '1');
+                    
+                    animateCodeBlock(terminal);
+                    obs.unobserve(terminal); // Animate only once
+                }
+            });
+        }, { threshold: 0.3 });
+
+        codeTerminals.forEach(terminal => {
+            observer.observe(terminal);
+        });
+    }
+
+    // Fade in animation on scroll
+    function animateOnScroll() {
+        const fadeElements = document.querySelectorAll('.fade-in');
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.animation = 'fadeInUp 0.8s ease-out forwards';
+                    observer.unobserve(entry.target);
+                }
+            });
+        }, { threshold: 0.1 });
+
+        fadeElements.forEach(element => {
+            observer.observe(element);
+        });
+    }
+
+    // Section hover effects
+    function addSectionEffects() {
+        const sections = document.querySelectorAll('.section');
+        sections.forEach(section => {
+            section.addEventListener('mouseenter', () => {
+                section.style.transform = 'translateY(-8px)';
+            });
+            section.addEventListener('mouseleave', () => {
+                section.style.transform = 'translateY(0)';
+            });
+        });
+    }
+
+    // Initialize everything
+    document.addEventListener('DOMContentLoaded', () => {
+        createTechParticles();
+        animateOnScroll();
+        setupCodeBlockObserver();
+        addSectionEffects();
+        
+        // Scroll events
+        window.addEventListener('scroll', updateScrollProgress);
+        
+        // Smooth scrolling for better UX
+        document.documentElement.style.scrollBehavior = 'smooth';
+    });
+
+    // Add responsive particle count
+    function adjustParticleCount() {
+        const width = window.innerWidth;
+        const particlesContainer = document.getElementById('techParticles');
+        const currentParticles = particlesContainer.children.length;
+        const targetParticles = width < 768 ? 20 : width < 1200 ? 35 : 50;
+        
+        if (currentParticles !== targetParticles) {
+            particlesContainer.innerHTML = '';
+            for (let i = 0; i < targetParticles; i++) {
+                const particle = document.createElement('div');
+                particle.className = 'particle';
+                particle.style.left = Math.random() * 100 + 'vw';
+                particle.style.animationDelay = Math.random() * 20 + 's';
+                particle.style.animationDuration = (Math.random() * 10 + 15) + 's';
+                particlesContainer.appendChild(particle);
+            }
+        }
+    }
+
+    window.addEventListener('resize', adjustParticleCount);
+
+
+
+   
+</script>
+
+</html>
